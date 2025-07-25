@@ -8,17 +8,23 @@ import repRoutes from "./routes/representative.routes.js";
 
 dotenv.config();
 const app = express();
+connectDB();
 
 // CORS configuration
-const allowwOrigins = [
+const allowedOrigins = [
   "http://localhost:5173", // React app
   "https://uni-vote-iota.vercel.app", // Production URL
 ];
 
-app.use(cors({
-  origin: "http://localhost:5173", // Your React frontend
-  credentials: true
-}))
+app.use(
+  cors({
+    origin: (origin, cb) =>{
+      if (!origin || allowedOrigins.includes(origin)) return cb(null, true);
+    },
+    credentials: true,
+    methodes: 'GET,PUT,POST,DELETE',
+    allowedHeaders: 'Content-Type, Authorization',
+  }))
 
 // ✅ Simple root route for browser testing
 app.get("/", (req, res) => {
@@ -32,9 +38,6 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/representatives", repRoutes);
 app.use("/uploads", express.static("uploads"));
-
-
-connectDB();
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
