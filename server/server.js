@@ -9,6 +9,12 @@ import repRoutes from "./routes/representative.routes.js";
 dotenv.config();
 const app = express();
 
+// CORS configuration
+const allowwOrigins = [
+  "http://localhost:5173", // React app
+  "https://uni-vote-iota.vercel.app", // Production URL
+];
+
 app.use(cors({
   origin: "http://localhost:5173", // Your React frontend
   credentials: true
