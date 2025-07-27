@@ -27,7 +27,7 @@ export default function LandingPage() {
       image: "Manu.jpg"
     },
     {
-      _id: "1",
+      _id: "3",
       name: "Osoro Were",
       party: "ODM",
       ward: "South",
@@ -35,7 +35,7 @@ export default function LandingPage() {
       image: "Osoro.jpg"
     },
     {
-      _id: "1",
+      _id: "4",
       name: "Kebagendi Mokoro",
       party: "KANU",
       ward: "Nyacheki",
@@ -43,7 +43,7 @@ export default function LandingPage() {
       image: "Keba.jpg"
     },
     {
-      _id: "1",
+      _id: "5",
       name: "Donya Toto",
       party: "Green Party",
       ward: "South Bogetaorio",
@@ -51,7 +51,7 @@ export default function LandingPage() {
       image: "donya.jpg"
     },
     {
-      _id: "1",
+      _id: "6",
       name: "Shahidi Jander",
       party: "NARC",
       ward: "Roinsoti",

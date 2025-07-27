@@ -36,11 +36,13 @@ const navigate = useNavigate();
       const data = await res.json()
 
      // 🔁 Redirect based on role
-    if (data.user.role === "admin") {
-      navigate("/dashboard"); // Admin dashboard route
-    } else {
-      navigate("/landing"); // Regular user landing page
-    }
+     if (data.user?.role === "admin") {
+     navigate("/dashboard");
+      } else if (data.role === "admin") {
+        navigate("/dashboard");
+      } else {
+         navigate("/landing");
+      }
 
 
       toast.success(`Welcome back, ${data.user.name}!`);
@@ -62,14 +64,14 @@ const navigate = useNavigate();
           <FormField control={form.control} name="email" render={({ field }) => (
             <FormItem>
               <FormLabel>Email</FormLabel>
-              <Input type="email" placeholder="you@youremail.com" {...field} />
+              <Input type="email" placeholder="you@youremail.com" autoComplete="email" {...field} />
               <FormMessage />
             </FormItem>
           )} />
           <FormField control={form.control} name="password" render={({ field }) => (
             <FormItem>
               <FormLabel>Password</FormLabel>
-              <Input type="password" placeholder="••••••••" {...field} />
+              <Input type="password" placeholder="••••••••" autoComplete="password" {...field} />
               <FormMessage />
             </FormItem>
           )} />
