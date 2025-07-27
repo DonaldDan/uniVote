@@ -20,7 +20,7 @@ export function LoginForm() {
     defaultValues: {
       email: "",
       password: "",
-    },
+  },
   })
 const navigate = useNavigate();
 
@@ -36,14 +36,12 @@ const navigate = useNavigate();
       const data = await res.json()
 
      // 🔁 Redirect based on role
-     if (data.user?.role === "admin") {
-     navigate("/dashboard");
-      } else if (data.role === "admin") {
-        navigate("/dashboard");
-      } else {
-         navigate("/landing");
-      }
+     if (data.role === "admin" || data.user?.role === "admin") {
+      navigate("/dashboard");}
+      else{
+        navigate("/landing");
 
+      }
 
       toast.success(`Welcome back, ${data.user.name}!`);
       duration: 3000;
