@@ -34,6 +34,10 @@ const navigate = useNavigate();
 
       if (!res.ok) throw new Error("Invalid credentials")
       const data = await res.json()
+      // Save data before redirecting
+      localStorage.setItem("token", data.token)
+      // 🛠️ Store user data in localStorage or context
+      localStorage.setItem("user", JSON.stringify(data.user))
 
      // 🔁 Redirect based on role
      if (data.role === "admin" || data.user?.role === "admin") {
