@@ -24,7 +24,7 @@ app.use(
       if (!origin || allowedOrigins.includes(origin)) return cb(null, true);
     },
     credentials: true,
-    methodes: 'GET,PUT,POST,DELETE',
+    methods: 'GET,PUT,POST,DELETE',
     allowedHeaders: 'Content-Type, Authorization',
   }))
 
