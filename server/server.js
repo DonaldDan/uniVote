@@ -7,6 +7,8 @@ import userRoutes from "./routes/user.routes.js";
 import repRoutes from "./routes/representative.routes.js";
 
 dotenv.config();
+const URI = process.env.MONGO_URI || process.env.LOCAL_MONGO_URI;
+
 const app = express();
 connectDB();
 
