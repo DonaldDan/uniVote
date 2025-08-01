@@ -39,18 +39,17 @@ const navigate = useNavigate();
       // 🛠️ Store user data in localStorage or context
       localStorage.setItem("user", JSON.stringify(data.user))
 
-     // 🔁 Redirect based on role
-     if (data.role === "admin" || data.user?.role === "admin") {
-      navigate("/dashboard");}
-      else{
-        navigate("/landing");
+// ✅ Show toast with duration
+toast.success(`Welcome back, ${data.user.name}!`, {
+  duration: 3000,
+});
 
-      }
-
-      toast.success(`Welcome back, ${data.user.name}!`);
-      duration: 3000;
-      // Redirect or set auth context here
-      //navigate("/landing");
+// ✅ Navigate based on role
+if (data.role === "admin" || data.user?.role === "admin") {
+  navigate("/dashboard");
+} else {
+  navigate("/landing");
+}
 
 
     } catch (error) {

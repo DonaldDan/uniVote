@@ -27,7 +27,7 @@ export const createRep = async (req, res) => {
 export const getUserReps = async (req, res) => {
   try {
     // Option 1: If user's ward is stored in their profile (preferred)
-    const user = await User.findById(req.user.id);
+    const user = await user.findById(req.user.id);
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
@@ -42,12 +42,30 @@ export const getUserReps = async (req, res) => {
   }
 };
 
-// Get All Representatives (Admin & Public)
+// Get All Representatives (for Users Public)
 export const getAllReps = async (req, res) => {
   try {
     const reps = await Representative.find().populate("createdBy", "name role");
     res.json(reps);
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch representatives" });
+  }
+};
+
+// votting
+export const voteForRep = async (req, res) => {
+  try {
+    const rep = await Representative.findById(req.params.id);
+    if (!rep) {
+      return res.status(404).json({ error: "Representative not found" });
+    }
+
+    rep.votes = (rep.votes || 0) + 1;
+    await rep.save();
+
+    res.status(200).json({ message: "Vote recorded", votes: rep.votes });
+  } catch (error) {
+    console.error("Vote error:", error);
+    res.status(500).json({ error: "Failed to vote" });
   }
 };

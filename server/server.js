@@ -5,9 +5,11 @@ import connectDB from "./config/db.js";
 import authRoutes from "./routes/auth.routes.js";
 import userRoutes from "./routes/user.routes.js";
 import repRoutes from "./routes/representative.routes.js";
+import path from "path";
 
 dotenv.config();
-const URI = process.env.MONGO_URI || process.env.LOCAL_MONGO_URI;
+
+const URI=process.env.LOCAL_MONGO_URI || process.env.MONGO_URI;
 
 const app = express();
 connectDB();
@@ -32,6 +34,10 @@ app.use(
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
+
+// upload
+const __dirname = path.resolve(); // if using ES modules
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use(express.json());
 
