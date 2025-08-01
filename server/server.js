@@ -9,10 +9,9 @@ import path from "path";
 
 dotenv.config();
 
-const URI=process.env.MONGO_URI || process.env.LOCAL_MONGO_URI;
 
 const app = express();
-connectDB(URI);
+connectDB();
 
 // CORS configuration
 const allowedOrigins = [
@@ -31,7 +30,7 @@ app.use(
   }))
 
 // ✅ Simple root route for browser testing
-app.get("/", (req, res) => {
+app.get("/", (_req, res) => {
   res.send("API is running...");
 });
 
