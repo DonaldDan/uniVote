@@ -9,10 +9,10 @@ import path from "path";
 
 dotenv.config();
 
-const URI=process.env.LOCAL_MONGO_URI || process.env.MONGO_URI;
+const URI=process.env.MONGO_URI || process.env.LOCAL_MONGO_URI;
 
 const app = express();
-connectDB();
+connectDB(URI);
 
 // CORS configuration
 const allowedOrigins = [
