@@ -30,7 +30,7 @@ export function Footer() {
             <ul className="space-y-1 text-muted-foreground">
               <li>Email: support@votesmart.app</li>
               <li>Twitter: @votesmartapp</li>
-              <li>GitHub: github.com/votesmart</li>
+              <li>GitHub: github.com/DonaldDan</li>
             </ul>
           </div>
         </div>
