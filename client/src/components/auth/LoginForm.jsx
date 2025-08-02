@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button"
 import { Form, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { useNavigate } from "react-router-dom";
 
-
 const loginSchema = z.object({
   email: z.string().email("Invalid email"),
   password: z.string().min(6, "Password must be at least 6 characters"),
@@ -20,48 +19,41 @@ export function LoginForm() {
     defaultValues: {
       email: "",
       password: "",
-  },
+    },
   })
-  const navigate = useNavigate();
+
+  const navigate = useNavigate()
 
   const onSubmit = async (values) => {
     try {
-      const baseURL = import.meta.env.VITE_API_URL;
-  
+      const baseURL = import.meta.env.VITE_API_URL
+
       const res = await fetch(`${baseURL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
-      });
-  
-      if (!res.ok) throw new Error("Invalid credentials");
-  
-      const data = await res.json();
-  
-      // ✅ Save token and user info
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
-  
-      // ✅ Show success toast
+      })
+
+      if (!res.ok) throw new Error("Invalid credentials")
+      const data = await res.json()
+
+      localStorage.setItem("token", data.token)
+      localStorage.setItem("user", JSON.stringify(data.user))
+
       toast.success(`Welcome back, ${data.user.name}!`, {
         duration: 3000,
-      });
-  
-      // ✅ Navigate to dashboard or desired page
-      navigate("/dashboard");
-  
-    } catch (err) {
-      toast.error(err.message || "Login failed");
-      console.error("Login error:", err);
-    }
-  };
+      })
 
-// ✅ Navigate based on role
-if (data.role === "admin" || data.user?.role === "admin") {
-  navigate("/dashboard");
-} else {
-  navigate("/landing");
-}
+      if (data.role === "admin" || data.user?.role === "admin") {
+        navigate("/dashboard")
+      } else {
+        navigate("/landing")
+      }
+
+    } catch (error) {
+      toast.error(error.message || "Login failed")
+    }
+  }
 
   return (
     <div className="w-full max-w-md mx-auto mt-10 border p-6 rounded-xl shadow-md bg-white">
