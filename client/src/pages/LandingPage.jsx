@@ -9,12 +9,14 @@ import { toast } from "sonner"
     useEffect(() => {
       const fetchReps = async () => {
         try {
-          const res = await axios.get("http://localhost:5000/api/representatives");
+          const baseURL = import.meta.env.VITE_API_URL;
+          const res = await axios.get(`${baseURL}/representatives`);
           setRepresentatives(res.data);
         } catch (err) {
           console.error("Error fetching representatives:", err);
         }
       };
+  
       fetchReps();
     }, []);
 
