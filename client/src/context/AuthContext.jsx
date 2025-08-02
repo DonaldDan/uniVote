@@ -1,31 +1,47 @@
 import { createContext, useContext, useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
 
 const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
+  const [token, setToken] = useState(null);
 
+  // ✅ On app load, restore login from localStorage
   useEffect(() => {
-    const storedUser = localStorage.getItem("user")
-    if (storedUser) setUser(JSON.parse(storedUser))
-  }, [])
+    const storedUser = localStorage.getItem("user");
+    const storedToken = localStorage.getItem("token");
 
-  const login = (userData) => {
-    setUser(userData)
-    localStorage.setItem("user", JSON.stringify(userData))
+    if (storedUser && storedToken) {
+      setUser(JSON.parse(storedUser));
+      setToken(storedToken);
+    }
+  }, []);
+
+  // login
+  const login = (data) => {
+    localStorage.setItem("token", data.token)
+    localStorage.setItem("user", JSON.stringify(data.user))
+    setUser(data.user)
   }
 
   const logout = () => {
-    setUser(null)
+    localStorage.removeItem("token")
     localStorage.removeItem("user")
+    setUser(null)
   }
 
+
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, token, login, logout, isLoggedIn: !!user }}>
       {children}
     </AuthContext.Provider>
-  )
+  );
 }
 
-export const useAuth = () => useContext(AuthContext)
+export const useAuth = () => {
+  const context = useContext(AuthContext)
+  if (!context) {
+    throw new Error("useAuth must be used within an AuthProvider")
+  }
+  return context
+}

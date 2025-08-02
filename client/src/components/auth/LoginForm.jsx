@@ -6,7 +6,8 @@ import { toast } from "sonner"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Form, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
+import { useAuth } from "@/context/AuthContext"
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email"),
@@ -23,6 +24,7 @@ export function LoginForm() {
   })
 
   const navigate = useNavigate()
+  const { login } = useAuth() // ✅ Move useAuth inside the component
 
   const onSubmit = async (values) => {
     try {
@@ -37,14 +39,11 @@ export function LoginForm() {
       if (!res.ok) throw new Error("Invalid credentials")
       const data = await res.json()
 
-      localStorage.setItem("token", data.token)
-      localStorage.setItem("user", JSON.stringify(data.user))
+      login(data) // ✅ Update auth state via context
 
-      toast.success(`Welcome back, ${data.user.name}!`, {
-        duration: 3000,
-      })
+      toast.success(`Welcome back, ${data.user.name}!`, { duration: 3000 })
 
-      if (data.role === "admin" || data.user?.role === "admin") {
+      if (data.user?.role === "admin") {
         navigate("/dashboard")
       } else {
         navigate("/landing")
@@ -70,7 +69,7 @@ export function LoginForm() {
           <FormField control={form.control} name="password" render={({ field }) => (
             <FormItem>
               <FormLabel>Password</FormLabel>
-              <Input type="password" placeholder="••••••••" autoComplete="password" {...field} />
+              <Input type="password" placeholder="••••••••" autoComplete="current-password" {...field} />
               <FormMessage />
             </FormItem>
           )} />
