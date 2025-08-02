@@ -22,27 +22,39 @@ export function LoginForm() {
       password: "",
   },
   })
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const onSubmit = async (values) => {
     try {
-      const res = await fetch("http://localhost:5000/api/auth/login", {
+      const baseURL = import.meta.env.VITE_API_URL;
+  
+      const res = await fetch(`${baseURL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
-      })
-
-      if (!res.ok) throw new Error("Invalid credentials")
-      const data = await res.json()
-      // Save data before redirecting
-      localStorage.setItem("token", data.token)
-      // 🛠️ Store user data in localStorage or context
-      localStorage.setItem("user", JSON.stringify(data.user))
-
-// ✅ Show toast with duration
-toast.success(`Welcome back, ${data.user.name}!`, {
-  duration: 3000,
-});
+      });
+  
+      if (!res.ok) throw new Error("Invalid credentials");
+  
+      const data = await res.json();
+  
+      // ✅ Save token and user info
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+  
+      // ✅ Show success toast
+      toast.success(`Welcome back, ${data.user.name}!`, {
+        duration: 3000,
+      });
+  
+      // ✅ Navigate to dashboard or desired page
+      navigate("/dashboard");
+  
+    } catch (err) {
+      toast.error(err.message || "Login failed");
+      console.error("Login error:", err);
+    }
+  };
 
 // ✅ Navigate based on role
 if (data.role === "admin" || data.user?.role === "admin") {
@@ -50,12 +62,6 @@ if (data.role === "admin" || data.user?.role === "admin") {
 } else {
   navigate("/landing");
 }
-
-
-    } catch (error) {
-      toast.error(error.message || "Login failed")
-    }
-  }
 
   return (
     <div className="w-full max-w-md mx-auto mt-10 border p-6 rounded-xl shadow-md bg-white">
