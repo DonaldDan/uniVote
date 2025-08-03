@@ -4,6 +4,7 @@ import StatsCards from "@/components/dashboard/StatsCards"
 import ActivePolls from "@/components/dashboard/ActivePolls"
 import RecentActivity from "@/components/dashboard/RecentActivity"
 import RepresentativeForm from "../components/dashboard/RepresentativeForm";
+import AdminPollForm from "./AdminPollForm"
 
 export default function DashboardPage() {
   return (
@@ -16,6 +17,7 @@ export default function DashboardPage() {
           <ActivePolls />
           <RecentActivity />
           <RepresentativeForm />
+          <AdminPollForm />
         </main>
       </div>
     </div>

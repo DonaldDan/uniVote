@@ -21,7 +21,6 @@ export default function Navbar() {
           alt="Vote logo"
           className="w-10 h-10 object-contain rounded-full animate-spin"
         />
-        <span className="text-xl font-bold text-[#F77F00]">Univote</span>
       </Link>
 
       <nav className="flex items-center space-x-4">
