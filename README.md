@@ -42,6 +42,19 @@ UniVote is a full-stack web application that enables users to vote for their pre
 - **Hosting**: Vercel (Frontend), Render (Backend)
 
 ---
+    ## Screenshots
+    Home Page
+    ![alt text](HomePage.png)
+
+    Landing Page
+    ![alt text](landingPage.png)
+
+    Login
+    ![alt text](login.png)
+
+    Register
+    ![alt text](register.png)
+---
 
 ## 📁 Folder Structure
 
