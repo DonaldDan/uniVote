@@ -54,24 +54,23 @@ Login
 Register
     ![Register Screenshot](./screenshots/register.png)
 # 📁 Folder Structure
-
-UniVote/
-├── client/ # React frontend
-│ ├── public/
-│ ├── src/
-│ │ ├── assets/ # Images for reps
-│ │ ├── components/ # Shared components
-│ │ ├── pages/ # Page components
-│ │ └── App.jsx
-│ └── vite.config.js
-├── server/ # Node.js backend
-│ ├── controllers/
-│ ├── models/
-│ ├── middleware/
-│ ├── routes/
-│ ├── utils/
-│ └── server.js
-└── README.md
+```UniVote/
+        ├── client/ # React frontend
+        │ ├── public/
+        │ ├── src/
+        │ │ ├── assets/ # Images for reps
+        │ │ ├── components/ # Shared components
+        │ │ ├── pages/ # Page components
+        │ │ └── App.jsx
+        │ └── vite.config.js
+        ├── server/ # Node.js backend
+        │ ├── controllers/
+        │ ├── models/
+        │ ├── middleware/
+        │ ├── routes/
+        │ ├── utils/
+        │ └── server.js
+        └── README.md
 
 # 🚀 Getting Started
 
