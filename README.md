@@ -41,22 +41,19 @@ UniVote is a full-stack web application that enables users to vote for their pre
 - **Database**: MongoDB (Atlas or Local)
 - **Hosting**: Vercel (Frontend), Render (Backend)
 
----
-    ## Screenshots
-    Home Page
-    ![alt text](HomePage.png)
+## Screenshots
+Home Page
+    ![Home Page](./screenshots/HomePage.png)
 
-    Landing Page
-    ![alt text](landingPage.png)
+Landing Page
+    ![landingPage Screenshot](./screenshots/landingPage.png)
 
-    Login
-    ![alt text](login.png)
+Login
+    ![Login Screenshot](./screenshots/login.png)
 
-    Register
-    ![alt text](register.png)
----
-
-## 📁 Folder Structure
+Register
+    ![Register Screenshot](./screenshots/register.png)
+# 📁 Folder Structure
 
 UniVote/
 ├── client/ # React frontend
@@ -76,9 +73,9 @@ UniVote/
 │ └── server.js
 └── README.md
 
-## 🚀 Getting Started
+# 🚀 Getting Started
 
-### 1. Clone the repository
+## 1. Clone the repository
 
 ```bash
 git clone https://github.com/yourusername/UniVote.git
