@@ -71,10 +71,10 @@ Register
         │ ├── utils/
         │ └── server.js
         └── README.md
+```
+# Getting Started
 
-# 🚀 Getting Started
-
-## 1. Clone the repository
+# 1. Clone the repository
 
 ```bash
 git clone https://github.com/yourusername/UniVote.git
@@ -125,8 +125,7 @@ Voting
 🖼️ Screenshots
     Replace with real screenshots of your app
 
-
-☁️ Deployment
+ # Deployment
     Frontend (Vercel)
     Push client to GitHub
 
