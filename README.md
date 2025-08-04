@@ -122,9 +122,6 @@ Representatives
 Voting
     POST /api/vote/:repId - Authenticated user vote
 
-🖼️ Screenshots
-    Replace with real screenshots of your app
-
  # Deployment
     Frontend (Vercel)
     Push client to GitHub
