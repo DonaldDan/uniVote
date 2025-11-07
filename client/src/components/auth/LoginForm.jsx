@@ -2,7 +2,6 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { toast } from "sonner"
-
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Form, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
@@ -11,9 +10,10 @@ import { useAuth } from "@/context/AuthContext"
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email"),
-  password: z.string().min(6, "Password must be at least 6 characters"),
+  password: z.string().min(7, "Password must be at least 7 characters"),
 })
 
+// login function
 export function LoginForm() {
   const form = useForm({
     resolver: zodResolver(loginSchema),
@@ -22,7 +22,6 @@ export function LoginForm() {
       password: "",
     },
   })
-
   const navigate = useNavigate()
   const { login } = useAuth() // ✅ Move useAuth inside the component
 
